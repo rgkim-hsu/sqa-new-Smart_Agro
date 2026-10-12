@@ -1,0 +1,16 @@
+# 시연용 사본의 SonarCloud CI 분석 (SQA 데모가 새 저장소 등록 때 추가) — 코드 파일은 바꾸지 않는다
+name: SonarCloud
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+jobs:
+  sonar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
